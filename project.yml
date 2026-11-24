@@ -1,0 +1,41 @@
+name: MyFirstApp
+options:
+  bundleIdPrefix: com.student
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+targets:
+  MyFirstApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/MyFirstApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.student.myfirstapp
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1,2"
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  MyFirstAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/MyFirstAppUITests
+    dependencies:
+      - target: MyFirstApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.student.myfirstapp.uitests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  MyFirstApp:
+    build:
+      targets:
+        MyFirstApp: all
+    test:
+      config: Debug
+      targets:
+        - MyFirstAppUITests
